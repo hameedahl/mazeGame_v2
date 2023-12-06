@@ -27,7 +27,7 @@ var timer, game;
 var mazeCount = 5
 var mazePath = "imgs/mazes/"
 var mazeId = Math.floor(Math.random() * mazeCount); /* randomize maze */
-
+mazeId = 0
 
 /* button listeners */
 document.getElementById("reset").onclick = resetGame
@@ -125,7 +125,7 @@ function checkForWin() {
 }
 
 function newMaze() {
-        newId = Math.floor(Math.random() * mazeCount);
+        newId = 0;
 
         while (newId == mazeId) { /* keep generating id until a new one */
                 newId = Math.floor(Math.random() * mazeCount);
