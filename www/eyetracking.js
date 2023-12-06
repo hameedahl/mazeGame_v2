@@ -7,14 +7,21 @@ function trackEye(data) {
 	var xprediction = data.x; //these x coordinates are relative to the viewport
 	var yprediction = data.y; //these y coordinates are relative to the viewport
 
-	if (xprediction < widthMiddle && 
+	// console.log("x: ", xprediction)
+	// console.log("y: ", yprediction)
+
+	if (xprediction == 0 || yprediction == 0) { /* a tie */
+		return
+	}
+
+	if (xprediction < 100 && 
 		!isBallCollidingWithImage(ball.x - velocityX, 
 		ball.y, ball.radius)) { /* left */
 		ball.x -= velocityX
 		moves++
 	} 
 	
-	if (xprediction >= widthMiddle &&
+	if (xprediction > (window.innerHeight - 100) &&
 		!isBallCollidingWithImage(ball.x + velocityX, 
 		ball.y, ball.radius)) { /* right */
 		ball.x += velocityX
@@ -22,7 +29,7 @@ function trackEye(data) {
 
 	} 
 	
-	if (yprediction < heightMiddle && 
+	if (yprediction < 0 && 
 		!isBallCollidingWithImage(ball.x, ball.y - velocityX, 
 		ball.radius)) {  /* up */
 		ball.y -= velocityX
@@ -30,7 +37,7 @@ function trackEye(data) {
 
 	} 
 	
-	if (yprediction >= heightMiddle && 
+	if (yprediction > (window.innerHeight - 100) && 
 		!isBallCollidingWithImage(ball.x, ball.y + velocityX, 
 		ball.radius)) { /* down */
 		ball.y += velocityX

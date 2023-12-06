@@ -45,6 +45,8 @@ function draw() {
         tempCanvas.width = canvas.width;
         tempCanvas.height = canvas.height;
         const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+        mazeImg.src = mazePath + "maze" + mazeId + ".png";
+
         tempCtx.drawImage(mazeImg, 0, 0, tempCanvas.width, tempCanvas.height);
         tempCtx.globalCompositeOperation = "source-in";
         tempCtx.fillStyle = mazeColor;

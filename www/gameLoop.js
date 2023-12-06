@@ -4,14 +4,14 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var mazeImg = document.getElementById('maze');
 var ballImg = document.getElementById('ball');
-var velocityX = 15.0;
+var velocityX = 5;
 var velocityY = 2;
 var gravity = 0.5;  // or 1
 var bounce = 0.7; 
 var xFriction = 0.1;
 var isTracking = true;
 var moves = 0
-var ball = { x: 330,  // or canvas.width / 2
+var ball = { x: 0,  // or canvas.width / 2
              y: 10, 
              radius: 6, 
              color: "#EF6E50"
@@ -24,14 +24,15 @@ var end = [0,0]
 var startMinutes = 0
 var time = startMinutes * 60
 var timer, game;
-var mazeCount = 4
+var mazeCount = 5
+var mazePath = "imgs/mazes/"
 var mazeId = Math.floor(Math.random() * mazeCount); /* randomize maze */
 
 
 /* button listeners */
-// document.getElementById("reset").onclick = resetGame
-// document.getElementById("sameMaze").onclick = resetGame
-// document.getElementById("newMaze").onclick = newMaze
+document.getElementById("reset").onclick = resetGame
+document.getElementById("sameMaze").onclick = resetGame
+document.getElementById("newMaze").onclick = newMaze
 
 function startMazeGame() {
         document.getElementById("gameArea").style.display = "inline"
@@ -67,6 +68,9 @@ function endGame() {
 }
 
 function gameLoop() {
+        // mazeImg = document.getElementById('maze');
+        // canvas.width = mazeImg.width
+        // canvas.height = mazeImg.height
         draw()
         updateMoves();
         checkForWin();
@@ -121,11 +125,12 @@ function checkForWin() {
 }
 
 function newMaze() {
-        
-}
+        newId = Math.floor(Math.random() * mazeCount);
 
-function newMaze() {
-        mazeId = Math.floor(Math.random() * mazeCount);
+        while (newId == mazeId) { /* keep generating id until a new one */
+                newId = Math.floor(Math.random() * mazeCount);
+        }
+        mazeId = newId
         resetGame()
 }
 

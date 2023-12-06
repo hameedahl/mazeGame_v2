@@ -1,6 +1,7 @@
 * {
         margin: 0;
         padding: 0;
+        font-family: 'Times New Roman', Times, serif;
 }
 
 html {
@@ -103,16 +104,16 @@ a:hover {
 #canvas {
         /* min-width: 90%; */
         /* width: 100%; */
-        mix-blend-mode: overlay;
-        color: red;
-        height: 80%; 
+        object-fit: contain;
+        position: absolute;
+        width: 550px;
+        height: 550px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         background-color: rgb(247, 167, 151);
         background: linear-gradient(90deg, rgba(155, 224, 150,.5) 20%, rgb(217, 222, 247,.5) 60%, rgba(247, 167, 151,.5) 100%);
 }
-
 
 /* win pop */
 #gameOverPopUp {
@@ -129,6 +130,7 @@ a:hover {
         font-weight: bold;
         box-shadow: 1px 4px 4px #293229, 0 0 1em #293229, 0 0 0.2em #293229;
         transition: 1s;
+        display: none;
 }
 
 #gameOverPopUpContent {
@@ -156,11 +158,12 @@ a:hover {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        width: 50%;
+        width: 80%;
         text-align: center;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        /* background-color: red; */
 }
 
 #btns button {
@@ -181,4 +184,9 @@ a:hover {
 
 #btns button:hover {
         color: #fff;
+}
+
+#reset:hover {
+        color: #637763;
+        cursor: pointer;
 }
