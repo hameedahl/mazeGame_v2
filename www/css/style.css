@@ -26,21 +26,23 @@ button {
 #webgazerNavbar {
     left: 320px;
     width: calc(100% - 320px);
+    height: 30px;
+    padding: 20px;
     z-index: 0;
     box-shadow: 0px 3px 5px #ddd;
     border:0px;
-    background-color: #fff;
+    background-color: #F29188;
 }
 
 #Accuracy a{
-    background-color: #222;
+    background-color: #3E593F;
     color: #eee;
     left: -15px;
     padding-left: 80px;
     padding-right: 40px;
 }
 #Accuracy {
-    background-color: #222;
+    background-color: #3E593F;
     padding-left: inherit;
 }
 
@@ -56,9 +58,10 @@ li {
     padding: 15px;
     border: none;
     background: none;
-    color: #777;
+    color: #3E593F;
 }
 .helpBtn:hover {
+    transition: 1s;
     color: black!important;
     text-decoration: none;
 }

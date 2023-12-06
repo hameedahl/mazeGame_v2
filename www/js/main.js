@@ -4,6 +4,7 @@ window.onload = async function() {
     await webgazer.setRegression('ridge') /* currently must set regression and tracker */
         //.setTracker('clmtrackr')
         .setGazeListener(function(data, clock) {
+            trackEye(data) /* start tracking for maze game */
           //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
           //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
         })
@@ -41,4 +42,5 @@ function Restart(){
     webgazer.clearData();
     ClearCalibration();
     PopUpInstruction();
+    endGame()
 }

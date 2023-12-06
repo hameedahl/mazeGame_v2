@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- <script src="webgazer.js"></script> -->
+        <script src="ballMovement.js" defer></script>
+        <script src="gameLoop.js" defer></script>
+        <!-- <script src="eyetracking.js"></script> -->
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <style>
+                html {
+                        background-image: url(imgs/garden.gif);
+                        width: 100%;
+                        height: 100%;
+                        background-repeat: no-repeat;
+                        background-position: top top;
+                        background-size: cover;
+                }
+        </style>
+</head>
+<body>
+<div id="gameArea">
+        <div id="gameStats">
+                <div class="timeDiv">Timer: <span id="time">0:00</span></div><br>
+                <div class="movesDiv">Moves: <span id="moves">0</span></div>
+        </div>
+        <canvas id="canvas" width="700" height="700">
+                <img id="maze" src="imgs/mazes/maze.png"></img>
+        </canvas>
+</div>
+
+
+
+
+</body>
+</html>

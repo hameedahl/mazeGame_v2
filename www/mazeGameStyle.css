@@ -1,0 +1,184 @@
+* {
+        margin: 0;
+        padding: 0;
+}
+
+html {
+        background-image: url(imgs/garden.gif);
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: top top;
+        background-size: cover;
+        overflow-y: hidden;
+}
+
+/* home page */
+.title {
+        color: #F29188;
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+}
+
+.title h1 {
+        font-size: 130px;
+        text-shadow: 6px 4px 4px #3E593F, 0 0 1em #F29188, 0 0 0.2em #fff;
+        transition: 1s;
+        font-weight: bolder;
+}
+
+a {
+        text-decoration: none;
+        color: #3E593F;
+}
+
+a:hover {
+        transition: 1s;
+        color: black
+}
+
+.start-btn {
+        font-size: 35px;
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        background: none;
+        color: #aacca7;
+        border: none;
+        text-shadow: 2px 2px 4px #3E593F, 
+                     0 0 0.2em #000, 
+                     0 0 1em #3E593F;
+        cursor: pointer;
+        position: relative;
+        top: 3vh;
+        transition: 1s;
+}
+
+#title {
+        position: absolute;
+        font-size: 20px;
+        font-weight: bold;
+}
+
+.start-btn:hover {
+        color: #fff;
+}
+
+/* level page */
+#gameArea {
+        position: absolute;
+        min-width: 50%;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+}
+
+#gameStats, #canvas {
+        display: block;
+        position: absolute;
+} 
+
+#gameStats {
+        padding: 5px;
+        margin-top: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        color: #293229;
+         /* #232e4b; */
+        background-color: rgb(247, 167, 151);
+        background: linear-gradient(90deg,  rgba(155, 224, 150,.5)20%, rgba(247, 167, 151,.5)60%, rgba(155, 224, 150,.5) 100%);
+}
+
+#canvas {
+        /* min-width: 90%; */
+        /* width: 100%; */
+        mix-blend-mode: overlay;
+        color: red;
+        height: 80%; 
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgb(247, 167, 151);
+        background: linear-gradient(90deg, rgba(155, 224, 150,.5) 20%, rgb(217, 222, 247,.5) 60%, rgba(247, 167, 151,.5) 100%);
+}
+
+
+/* win pop */
+#gameOverPopUp {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgb(247, 167, 151, .9);
+        width: 400px;
+        height: 300px;
+        text-align: center;
+        border-radius: 10px;
+        color: #293229;
+        font-weight: bold;
+        box-shadow: 1px 4px 4px #293229, 0 0 1em #293229, 0 0 0.2em #293229;
+        transition: 1s;
+}
+
+#gameOverPopUpContent {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+}
+
+#winLoseText, #btns, #endStats {
+        margin-bottom: 40px;
+}
+
+#winLoseText {
+        font-size: 40px;
+}
+
+#endStats {
+        font-style: italic;
+        font-size: 20px;
+}
+
+#btns {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+#btns button {
+        /* background-color: rgb(41, 51, 41); */
+        font-size: 20px;
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        background: none;
+        color: #aacca7;
+        border: none;
+        text-shadow: 2px 2px 4px #3E593F, 
+                     0 0 0.2em #000, 
+                     0 0 1em #3E593F;
+        cursor: pointer;
+        transition: 1s;
+}
+
+#btns button:hover {
+        color: #fff;
+}

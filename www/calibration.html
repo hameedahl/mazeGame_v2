@@ -15,14 +15,19 @@ Instructions on use can be found in the README repository.
         <TITLE>WebGazer Demo</TITLE>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="mazeGameStyle.css">
         <!-- <script src="./tensorflow.js"></script> -->
         <script src="./webgazer.js"></script>
+        <script src="ballMovement.js" defer></script>
+        <script src="gameLoop.js" defer></script>
     </head>
     <body LANG="en-US" LINK="#0000ff" DIR="LTR">
       <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
 
         <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
 
+        <script src="eyetracking.js"></script>
         <script src="./js/main.js"></script>
         <script src="./js/calibration.js"></script>
         <script src="./js/precision_calculation.js"></script>
@@ -41,7 +46,6 @@ Instructions on use can be found in the README repository.
                 <!-- Accuracy -->
                 <li id="Accuracy"><a>Not yet Calibrated</a></li>
                 <li><a onclick="Restart()" href="#">Recalibrate</a></li>
-                <li><a onclick="webgazer.applyKalmanFilter(!webgazer.params.applyKalmanFilter)" href="#">Toggle Kalman Filter</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a class="helpBtn" onclick="helpModalShow()" href="#"><span class="glyphicon glyphicon-cog"></span> Help</a></li>
@@ -79,7 +83,30 @@ Instructions on use can be found in the README repository.
 
           </div>
         </div>
-
+        <div id="gameArea">
+          <div id="gameStats">
+                  <div class="timeDiv">Timer: <span id="time">0:00</span></div><br>
+                  <div class="movesDiv">Moves: <span id="moves">0</span></div>
+                <div><i id="reset" class="fa-solid fa-rotate-right"></i></div>
+          </div>
+          <canvas id="canvas" width="700" height="700">
+                  <img id="maze" src="imgs/mazes/maze.png"></img>
+          </canvas>
+        </div>
+        <div id="gameOverPopUp" style="display: none;">
+          <div id="gameOverPopUpContent">
+                  <div id="winLoseText">You Win!</div>
+                  <div id="endStats">
+                          <div class="timeDiv">Elapsed Time: <span id="endTime">0:00</span></div><br>
+                          <div class="movesDiv">Moves: <span id="endMoves">0</span></div>
+                  </div>
+                  <div id="btns">
+                          <button id="newMaze">New Maze</button>
+                          <button id="sameMaze">Same Maze</button>
+                          <a href="homePage.html"><button id="quit">Quit</button></a>
+                      </div>
+              </div>
+        </div>
         <!-- Latest compiled JavaScript -->
         <script src="./js/resize_canvas.js"></script>
         <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
