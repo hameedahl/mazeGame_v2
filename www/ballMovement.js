@@ -11,14 +11,15 @@ function checkKey(e) {
                 moves++
         } else if (e.keyCode == '40' && 
                   !isBallCollidingWithImage(ball.x, ball.y + velocityX, 
-                                            ball.radius)) {  /* up */
+                                            ball.radius)) {  /* down */ 
                 ball.y += velocityX
                 moves++
         } else if (e.keyCode == '38' && 
                    !isBallCollidingWithImage(ball.x, ball.y - velocityX, 
-                                             ball.radius)) { /* down */
+                                             ball.radius)) { /* up */
                 ball.y -= velocityX
                 moves++
+
         } else if (e.keyCode == '32') { /* space bar */
                 /* pause game */
                 if (isTracking) {
@@ -28,10 +29,11 @@ function checkKey(e) {
                         isTracking = true
                         webgazer.resume(); //data collection resumes, gaze callback will be called again
                 }
-        }
+        } 
+
 }
 
-function draw() {
+async function drawBall() {
         ctx.clearRect(0, 0, canvas.width, canvas.height); 
         /* draw ball */ 
         ctx.beginPath();
@@ -39,31 +41,14 @@ function draw() {
         ctx.fillStyle = ball.color;
         ctx.fill();
         ctx.closePath();
-        
-        /* to temp canvas to color maze */
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = canvas.width;
-        tempCanvas.height = canvas.height;
-        const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
-        mazeImg.src = mazePath + "maze" + mazeId + ".png";
-
-        tempCtx.drawImage(mazeImg, 0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.globalCompositeOperation = "source-in";
-        tempCtx.fillStyle = mazeColor;
-        tempCtx.fillRect(0, 0, canvas.width, canvas.height);
-
-        /* draw colored maze back to original canvas */
-        ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
-
         updateMoves();
 }
 
-function xF() {
-    if (velocityX > 0)
-        velocityX = velocityX - xFriction;
-    if(velocityX < 0)
-        velocityX = velocityX + xFriction;
+async function drawMaze() {
+        mazeImg.src = mazePath + "maze" + mazeId + ".png";
+        ctx.drawImage(mazeImg, 0, 0, canvas.width, canvas.height);
 }
+
 
 function isBallCollidingWithImage(arcX, arcY, arcRadius) {
         /* collision with maze collision with floor */

@@ -11,35 +11,39 @@ var bounce = 0.7;
 var xFriction = 0.1;
 var isTracking = true;
 var moves = 0
-var ball = { x: 0,  // or canvas.width / 2
-             y: 10, 
-             radius: 6, 
-             color: "#EF6E50"
-           };
 var timeElem = document.getElementById('time')
 var moveElem = document.getElementById('moves')
 var mazeColor = '#293229'
-var start = [0,0]
-var end = [0,0]
+var start = [150, 10]
+var end = [180, 320] /* start and end for maze 0 */
 var startMinutes = 0
 var time = startMinutes * 60
 var timer, game;
 var mazeCount = 5
 var mazePath = "imgs/mazes/"
-var mazeId = Math.floor(Math.random() * mazeCount); /* randomize maze */
-mazeId = 0
+var mazeId = 8;
+var ball = {    x: start[0],
+                y: start[1], 
+                radius: 6, 
+                color: "#EF6E50"
+        };
+var startAndFinish = []
 
 /* button listeners */
 document.getElementById("reset").onclick = resetGame
 document.getElementById("sameMaze").onclick = resetGame
-document.getElementById("newMaze").onclick = newMaze
 
-function startMazeGame() {
+async function startMazeGame() {
         document.getElementById("gameArea").style.display = "inline"
         document.onkeydown = checkKey;
-        draw()
-        findStartAndFinish()
+        await drawMaze()
         ball.x = start[0]
+        ball.y = start[1]
+        await drawBall()
+        await startTimers()
+}
+
+async function startTimers() {
         game = setInterval(gameLoop, 1000/35); 
         timer = setInterval(updateTimer, 1000)
 }
@@ -67,15 +71,13 @@ function endGame() {
         document.getElementById("gameOverPopUp").style.display = "none"
 }
 
-function gameLoop() {
-        // mazeImg = document.getElementById('maze');
-        // canvas.width = mazeImg.width
-        // canvas.height = mazeImg.height
-        draw()
-        updateMoves();
+async function gameLoop() {
+        canvas.width = mazeImg.width * 2
+        canvas.height = mazeImg.height * 2
+        drawBall();
+        drawMaze();
         checkForWin();
 }
-
 
 function updateTimer() {
         minutes = Math.floor(time / 60)
@@ -91,31 +93,49 @@ function updateMoves() {
         }
 }
 
-function findStartAndFinish() { 
-        /* find start */
-        pixel = ctx.getImageData(0, 0, canvas.width, 1).data;
-        for (let i = 3; i < pixel.length; i += 4) {
-                // Check the alpha channel (transparency)
-                if (pixel[i] === 0) {
-                        const x = (i / 4) % canvas.width;
-                        start = [x+15, 10]
-                        break;
-                }
-        }
+async function findStartAndFinish() { 
+        for (let mazeNum = 0; mazeNum < mazeCount; mazeNum++) {
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+                
+                let pixel;
+                const img = new Image();
+                img.src = mazePath + "maze" + mazeNum + ".png";
 
-        /* find end */
-        pixel = ctx.getImageData(0, canvas.height-1, canvas.width, 1).data;
-        for (let i = 3; i < pixel.length; i += 4) {
-                // Check the alpha channel (transparency)
-                if (pixel[i] === 0) {
-                        const x = (i / 4) % canvas.width;
-                        end = [x+5, canvas.height - 15]
-                        break;
+                img.onload = function() {
+                        tempCanvas.width = canvas.width;
+                        tempCanvas.height = canvas.height;
+                        ctx.drawImage(img, 0, 0, tempCanvas.width, tempCanvas.height);
+                        pixel = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height).data;
+
+                        /* find start */
+                        for (let i = 3; i < pixel.length; i += 4) {
+                                /* Check for transparency pixel */
+                                if (pixel[i] === 0) {
+                                        const x = (i / 4) % tempCanvas.width;
+                                        start = [x+15, 10]
+                                        break;
+                                }
+                        }
+
+                        /* find end */
+                        pixel = ctx.getImageData(0, tempCanvas.height-1, tempCanvas.width, 5).data;
+                        for (let i = 3; i < pixel.length; i += 4) {
+                                /* Check for transparency pixel */
+
+                                if (pixel[i] === 0) {
+                                        const x = (i / 4) % tempCanvas.width;
+                                        end = [x+5, tempCanvas.height - 15]
+                                        break;
+                                }
+                        }
+
+                        startAndFinish.push({top: start, bottom: end})
                 }
         }
 }
 
-function checkForWin() {
+async function checkForWin() {
         if (ball.x >= end[0] && ball.y >= end[1]) {
                 clearInterval(timer) /* stop timer */
                 document.getElementById("endTime").innerText = timeElem.innerText
@@ -124,24 +144,15 @@ function checkForWin() {
         }
 }
 
-function newMaze() {
-        newId = 0;
+async function newMaze() {
+        newId = Math.floor(Math.random() * mazeCount);
 
         while (newId == mazeId) { /* keep generating id until a new one */
                 newId = Math.floor(Math.random() * mazeCount);
         }
         mazeId = newId
         resetGame()
+        drawMaze()
+        ball.x = startAndFinish[mazeId].top[0]
+        ball.y = startAndFinish[mazeId].top[1]
 }
-
-/* 
-        - home screen -> instructions -> level 
-                - if get to end before time -> new maze (reset score)
-                - if not get to end -> try again with same maze?
-        - TODO
-        ---------
-                - add score (increase with pickups)
-                        - to the left of maze
-                - make more mazes 
-                - add things to pick up 
-*/

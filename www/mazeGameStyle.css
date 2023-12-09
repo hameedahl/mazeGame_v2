@@ -30,7 +30,35 @@ html {
         text-shadow: 6px 4px 4px #3E593F, 0 0 1em #F29188, 0 0 0.2em #fff;
         transition: 1s;
         font-weight: bolder;
+        padding: 10px; 
 }
+
+.title h2 {
+        font-size: 40px;
+        text-shadow: 1px 1px 1px #3E593F, 0 0 1em #F29188, 0 0 0.2em #fff;
+        transition: 1s;
+        font-weight: bolder;
+        padding: 10px; 
+}
+
+.title h3 {
+        width: 500px;
+        font-size: 25px;
+        word-wrap: break-word;
+}
+
+
+.parent {
+        text-align:center;
+}
+      
+.child {
+        display: inline-block;
+        padding: 2rem 2rem;
+        vertical-align: middle;
+        text-align: left;
+}
+
 
 a {
         text-decoration: none;
@@ -79,9 +107,9 @@ a:hover {
         display: none;
 }
 
-#gameStats, #canvas {
+#gameStats, #canvasArea {
         display: block;
-        position: absolute;
+        position: relative;
 } 
 
 #gameStats {
@@ -96,23 +124,35 @@ a:hover {
         display: flex;
         justify-content: space-around;
         color: #293229;
-         /* #232e4b; */
         background-color: rgb(247, 167, 151);
         background: linear-gradient(90deg,  rgba(155, 224, 150,.5)20%, rgba(247, 167, 151,.5)60%, rgba(155, 224, 150,.5) 100%);
 }
 
+
+#canvasArea {
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%, -20%);
+        /* max-width: 10%; */
+        min-width: 600px;
+        width: 90%;
+        max-width: 100%;
+        height: 80%;
+        background-color: rgb(247, 167, 151);
+        background: linear-gradient(90deg, rgba(155, 224, 150,.5) 20%, rgb(217, 222, 247,.5) 60%, rgba(247, 167, 151,.5) 100%);
+}
+
 #canvas {
         /* min-width: 90%; */
+        object-fit: contain;  
         /* width: 100%; */
-        object-fit: contain;
+              
         position: absolute;
         width: 550px;
         height: 550px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-color: rgb(247, 167, 151);
-        background: linear-gradient(90deg, rgba(155, 224, 150,.5) 20%, rgb(217, 222, 247,.5) 60%, rgba(247, 167, 151,.5) 100%);
 }
 
 /* win pop */
@@ -163,7 +203,6 @@ a:hover {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* background-color: red; */
 }
 
 #btns button {
@@ -190,3 +229,37 @@ a:hover {
         color: #637763;
         cursor: pointer;
 }
+
+.continue-btn {
+        font-size: 35px;
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        background: none;
+        color: #aacca7;
+        border: none;
+        text-shadow: 2px 2px 4px #3E593F, 
+                     0 0 0.2em #000, 
+                     0 0 1em #3E593F;
+        cursor: pointer;
+        position: relative;
+        top: 3vh;
+        transition: 1s;
+}
+
+ul {
+        list-style: initial; /* Resetting to default */
+}
+
+.rightText {
+        font-size: 20px;
+        color: #aacca7;
+        text-shadow: 2px 2px 4px #3E593F, 
+        0 0 0.2em #000, 
+        0 0 1em #3E593F;
+        padding: 10px;
+}
+
+#webgazerGazeDot {
+        background-color: rgb(48, 68, 48) !important;
+} 

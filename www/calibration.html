@@ -89,9 +89,11 @@ Instructions on use can be found in the README repository.
                   <div class="movesDiv">Moves: <span id="moves">0</span></div>
                 <div><i id="reset" class="fa-solid fa-rotate-right"></i></div>
           </div>
-          <canvas id="canvas" width="700" height="700">
-                  <img id="maze" src="imgs/mazes/maze0.png"></img>
-          </canvas>
+          <div id="canvasArea">
+              <canvas id="canvas" width="700" height="700">
+                      <img id="maze" src="imgs/mazes/maze4.png"></img>
+              </canvas>
+          </div>
         </div>
         <div id="gameOverPopUp">
           <div id="gameOverPopUpContent">
@@ -101,8 +103,7 @@ Instructions on use can be found in the README repository.
                           <div class="movesDiv">Moves: <span id="endMoves">0</span></div>
                   </div>
                   <div id="btns">
-                          <button id="newMaze">New Maze</button>
-                          <button id="sameMaze">Same Maze</button>
+                          <button id="sameMaze">Try Again</button>
                           <a href="homePage.html"><button id="quit">Quit</button></a>
                       </div>
               </div>
