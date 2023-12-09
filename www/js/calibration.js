@@ -73,7 +73,7 @@ function calcAccuracy() {
                         if (isConfirm){
                             //clear the calibration & hide the last middle button
                             ClearCanvas();
-                            startMazeGame();
+                            mazeGame.startMazeGame();
                         } else {
                             //use restart function to restart the calibration
                             document.getElementById("Accuracy").innerHTML = "<a>Not yet Calibrated</a>";

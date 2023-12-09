@@ -1,12 +1,11 @@
+var mazeGame /* new game instance */
 window.onload = async function() {
 
     //start the webgazer tracker
     await webgazer.setRegression('ridge') /* currently must set regression and tracker */
         //.setTracker('clmtrackr')
         .setGazeListener(function(data, clock) {
-            trackEye(data) /* start tracking for maze game */
-          //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-          //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+            mazeGame.ball.trackEye(data, mazeGame.ball) /* start tracking for maze game */
         })
         .saveDataAcrossSessions(true)
         .begin();
@@ -42,5 +41,6 @@ function Restart(){
     webgazer.clearData();
     ClearCalibration();
     PopUpInstruction();
-    endGame()
+    mazeGame = new Model() 
+    mazeGame.endGame()
 }

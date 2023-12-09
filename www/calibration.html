@@ -1,3 +1,12 @@
+<!--
+ *  
+ *  Assignment: NonWimp 2 Fall 2023
+ *  Name: Stephanie Kim and Hameedah Lawal 
+ *  Email: stephanie.kim640944@tufts.edu and hameedah.lawal@tufts.edu
+ *  UI for maze game and webgazer calibration 
+ * 
+-->
+
 <!DOCTYPE html>
 <!--
 This is an example HTML that shows how WebGazer can be used on a website.
@@ -14,20 +23,21 @@ Instructions on use can be found in the README repository.
         <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
         <TITLE>WebGazer Demo</TITLE>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link href="favicon.ico" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="mazeGameStyle.css">
         <!-- <script src="./tensorflow.js"></script> -->
         <script src="./webgazer.js"></script>
-        <script src="ballMovement.js" defer></script>
-        <script src="gameLoop.js" defer></script>
+
     </head>
     <body LANG="en-US" LINK="#0000ff" DIR="LTR">
       <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
-
+      <script src="./js/Maze.js" defer></script>
+      <script src="./js/Ball.js" defer></script>
+      <script src="./js/Model.js" defer></script>
+      <script src="./js/MazeMain.js" defer></script>
         <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
-
-        <script src="eyetracking.js"></script>
         <script src="./js/main.js"></script>
         <script src="./js/calibration.js"></script>
         <script src="./js/precision_calculation.js"></script>
@@ -91,7 +101,7 @@ Instructions on use can be found in the README repository.
           </div>
           <div id="canvasArea">
               <canvas id="canvas" width="700" height="700">
-                      <img id="maze" src="imgs/mazes/maze4.png"></img>
+                      <img id="maze" src="imgs/mazes/maze8.png"></img>
               </canvas>
           </div>
         </div>
